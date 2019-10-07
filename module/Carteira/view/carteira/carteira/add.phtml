@@ -1,0 +1,56 @@
+<?php
+
+$title = "Adicionar Ação";
+$this->headTitle($title);
+
+?>
+
+<h1><?= $this->escapeHtml($title) ?></h1>
+<?php
+
+$form->setAttribute('action', $this->url('carteira', ['action' => 'add']));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+
+$empresa = $form->get('empresa');
+$empresa->setAttribute('class', 'form-control');
+$empresa->setAttribute('placeholder', 'Empresa');
+
+$codigo = $form->get('codigo');
+$codigo->setAttribute('class', 'form-control');
+$codigo->setAttribute('placeholder', 'Código');
+
+$quantidade = $form->get('quantidade');
+$quantidade->setAttribute('class', 'form-control');
+$quantidade->setAttribute('placeholder', 'Quantidade');
+
+$submit = $form->get('submit');
+$submit->setAttribute('class', 'btn btn-primary');
+
+?>
+
+<div class="form-group">
+    <?= $this->formLabel($empresa) ?>
+    <?= $this->formElement($empresa) ?>
+    <?= $this->formElementErrors()->render($empresa,['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($codigo) ?>
+    <?= $this->formElement($codigo) ?>
+    <?= $this->formElementErrors()->render($codigo,['class' => 'help-block']) ?>
+</div>
+
+<div class="form-group">
+    <?= $this->formLabel($quantidade) ?>
+    <?= $this->formElement($quantidade) ?>
+    <?= $this->formElementErrors()->render($quantidade,['class' => 'help-block']) ?>
+</div>
+
+
+
+<?php
+echo $this->formSubmit($submit);
+echo $this->formHidden($form->get('id'));
+echo $this->form()->closeTag();

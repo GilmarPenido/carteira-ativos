@@ -1,0 +1,33 @@
+<?php
+
+$title = 'Carteira';
+$this->headTitle($title);
+?>
+
+<h1><?= $this->escapeHtml($title) ?></h1>
+
+<p>
+    <a href="<?= $this->url('carteira', ['action' => 'add']) ?>">Adicionar nova carteira</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>Empresa</th>
+    <th>Código</th>
+    <th>Quantidade</th>
+    <th>&nbsp;</th>
+</tr>
+
+<?php foreach ($carteira as $acao) : ?>
+    <tr>
+        <td><?= $this->escapeHtml($acao->empresa) ?></td>
+        <td><?= $this->escapeHtml($acao->codigo) ?></td>
+        <td><?= $this->escapeHtml($acao->quantidade) ?></td>
+        <td>
+            <a href="<?= $this->url('carteira', ['action' => 'edit', 'id' => $acao->id]) ?>">Editar</a>
+            <a href="<?= $this->url('carteira', ['action' => 'delete', 'id' => $acao->id]) ?>">Deletar</a>
+        </td>
+    </tr>
+<?php endforeach; ?>
+
+</table>
